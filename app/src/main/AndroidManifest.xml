@@ -38,7 +38,7 @@
 
         <activity
             android:windowSoftInputMode="adjustResize"
-            android:name=".MainActivity">
+            android:name="mihail.development.taxi.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
@@ -47,18 +47,18 @@
 
         <activity
             android:windowSoftInputMode="adjustResize"
-            android:name=".MapActivity">
+            android:name="mihail.development.taxi.MapActivity">
         </activity>
 
 
         <activity
             android:windowSoftInputMode="adjustResize"
-            android:name=".RegisterActivity">
+            android:name="mihail.development.taxi.RegisterActivity">
         </activity>
 
         <activity
             android:windowSoftInputMode="adjustResize"
-            android:name=".DriversListActivity"
+            android:name="mihail.development.taxi.DriversListActivity"
             />
 
     </application>

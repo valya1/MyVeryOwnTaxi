@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent" android:layout_height="wrap_content"
+    android:padding="10dp"
+    >
+
+    <android.support.v7.widget.CardView
+
+        android:id="@+id/cv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardUseCompatPadding="true">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/person_photo"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginRight="16dp"
+                android:src="@drawable/driver1" />
+
+            <TextView
+                android:id="@+id/tvDriverFirstName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/person_photo"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/tvDriverLastName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/tvDriverFirstName"
+                android:paddingLeft="10sp"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/tvDriverCar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tvDriverLastName"
+                android:layout_toRightOf="@+id/person_photo"
+                android:paddingLeft="15dp"
+                android:paddingTop="5dp"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/tvRating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tvDriverCar"
+                android:layout_toRightOf="@id/person_photo"
+                android:paddingLeft="15sp" />
+
+            <TextView
+                android:id="@+id/tvDriverRatingValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tvDriverCar"
+                android:layout_toRightOf="@+id/tvRating"
+                android:paddingLeft="10sp" />
+
+            <android.support.v7.widget.AppCompatButton
+                android:id="@+id/btnChat"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:layout_alignBottom="@+id/person_photo"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:background="@drawable/chat_icon" />
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
+
+</LinearLayout>

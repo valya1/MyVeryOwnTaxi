@@ -1,4 +1,4 @@
-package mihail.development.taxi;
+package mihail.development.taxi.activities;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -15,9 +15,10 @@ import com.google.gson.JsonParser;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import mihail.development.taxi.R;
 import mihail.development.taxi.data.Driver;
 import mihail.development.taxi.data.OkHttp;
-import mihail.development.taxi.recyclerview.DriversAdapter;
+import mihail.development.taxi.driversrecycler.DriversAdapter;
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;

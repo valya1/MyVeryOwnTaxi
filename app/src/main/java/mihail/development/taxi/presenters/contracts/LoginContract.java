@@ -1,5 +1,7 @@
 package mihail.development.taxi.presenters.contracts;
 
+import mihail.development.taxi.data.User;
+
 /**
  * Created by mihail on 11.04.2017.
  */
@@ -11,6 +13,9 @@ public interface LoginContract {
     }
 
     interface View{
-        void toMapActivity();
+        void toMapActivity(User user);
+        void showErrorMessage();
+
+
     }
 }

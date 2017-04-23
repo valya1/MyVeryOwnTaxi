@@ -1,6 +1,7 @@
 package mihail.development.taxi.presenters;
 
 import mihail.development.taxi.UseCases.LoginUseCase;
+import mihail.development.taxi.data.User;
 import mihail.development.taxi.presenters.contracts.LoginContract;
 import io.reactivex.observers.DisposableObserver;
 
@@ -16,16 +17,16 @@ public class MyLoginPresenter implements LoginContract.LoginPresenter {
 
 // обновление интерфейса
 
-    private DisposableObserver<Boolean> createObserver()
+    private DisposableObserver<User> createObserver()
     {
-       return new DisposableObserver<Boolean>() {
+       return new DisposableObserver<User>() {
            @Override
-           public void onNext(Boolean aBoolean) {
-               view.toMapActivity();
+           public void onNext(User user) {
+               view.toMapActivity(user);
            }
            @Override
            public void onError(Throwable e) {
-
+               view.showErrorMessage();
            }
            @Override
            public void onComplete() {

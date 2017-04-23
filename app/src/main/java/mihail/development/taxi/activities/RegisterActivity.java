@@ -1,6 +1,7 @@
-package mihail.development.taxi;
+package mihail.development.taxi.activities;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -8,10 +9,16 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.Spinner;
+import android.widget.TextView;
 
+import mihail.development.taxi.R;
+import mihail.development.taxi.activities.MapActivity;
 import mihail.development.taxi.data.User;
 import mihail.development.taxi.presenters.MyCheckLoginPresenter;
 import mihail.development.taxi.presenters.MyRegistrationPresenter;
@@ -25,20 +32,49 @@ public class RegisterActivity extends AppCompatActivity implements RegistrationC
     final CheckLoginContract.CheckLoginPresenter checkLoginPresenter = new MyCheckLoginPresenter(this);
     private static final String TAG = "RegisterActivity";
 
+    private Button registry;
+    private EditText login;
+    private EditText password;
+    private EditText firstName;
+    private EditText lastName;
+    private Spinner faculty;
+    private String facultyStr;
+    private EditText avatar;
+    private ProgressBar progressBar;
+    private TextView onLoginCheck;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.registry);
 
-        final Button registry = (Button) findViewById(R.id.btRegistry);
-        final EditText login = (EditText) findViewById(R.id.tvLogin);
-        final EditText password = (EditText) findViewById(R.id.tvPassword);
-        final EditText firstName = (EditText) findViewById(R.id.tvLFirstName);
-        final EditText lastName = (EditText) findViewById(R.id.tvLastName);
-        final EditText faculty = (EditText) findViewById(R.id.tvFaculty);
-        final EditText avatar = (EditText) findViewById(R.id.tvAvatar);
-        final ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);
+        registry = (Button) findViewById(R.id.btRegistry);
+        login = (EditText) findViewById(R.id.tvLogin);
+        password = (EditText) findViewById(R.id.tvPassword);
+        firstName = (EditText) findViewById(R.id.tvLFirstName);
+        lastName = (EditText) findViewById(R.id.tvLastName);
+        faculty = (Spinner) findViewById(R.id.typesSpinner);
+        onLoginCheck = (TextView) findViewById(R.id.tvCheckLogin);
+        avatar = (EditText) findViewById(R.id.tvAvatar);
+        progressBar = (ProgressBar) findViewById(R.id.progressBar);
 
+
+        final String[] data = {"ВШЭКН", "Не ВШЭКН"};
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, data);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        faculty.setAdapter(adapter);
+        faculty.setPrompt("Факультет");
+        faculty.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                facultyStr = data[position];
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
 //        final Observable<CharSequence> loginObs = RxTextView.textChanges(login);
 
@@ -77,8 +113,6 @@ public class RegisterActivity extends AppCompatActivity implements RegistrationC
 //                return false;
 //            }
 //        });
-
-
 
                 login.addTextChangedListener(new TextWatcher() {
                     @Override
@@ -127,7 +161,7 @@ public class RegisterActivity extends AppCompatActivity implements RegistrationC
 //                thread.start();
 
                 User user = new User(firstName.getText().toString(),lastName.getText().toString(),
-                        faculty.getText().toString(), login.getText().toString(),
+                        facultyStr, login.getText().toString(),
                         password.getText().toString(), avatar.getText().toString());
                 registrationPresenter.onRegistration(user);
             }
@@ -136,18 +170,23 @@ public class RegisterActivity extends AppCompatActivity implements RegistrationC
 
     @Override
     public void onInAccessibleLogin() {
+        onLoginCheck.setText("Логин занят");
+        onLoginCheck.setVisibility(View.VISIBLE);
+        onLoginCheck.setTextColor(Color.rgb(244,66,66));
         Log.i(TAG, "Not Available login");
     }
 
     @Override
     public void onAccessibleLogin() {
+        onLoginCheck.setTextColor(Color.rgb(8,173,22));
+        onLoginCheck.setText("Логин свободен");
+        onLoginCheck.setVisibility(View.VISIBLE);
         Log.i(TAG, "Available login");
-
     }
 
     @Override
     public void onSuccessRegistration() {
 
-        startActivity(new Intent(this, MainActivity.class));
+        startActivity(new Intent(this, MapActivity.class));
     }
 }

@@ -1,5 +1,7 @@
-package mihail.development.taxi.recyclerview;
+package mihail.development.taxi.driversrecycler;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,6 +9,7 @@ import android.view.ViewGroup;
 
 import java.util.ArrayList;
 
+import mihail.development.taxi.activities.ChatActivity;
 import mihail.development.taxi.data.Driver;
 
 
@@ -42,11 +45,18 @@ public class DriversAdapter extends RecyclerView.Adapter<DriversViewHolder> {
 
     @Override
     public void onBindViewHolder(DriversViewHolder holder, int position) {
-        Driver driver = drivers.get(position);
+        final Driver driver = drivers.get(position);
         holder.tvDriverFirstName.setText(driver.getF_name());
         holder.tvDriverLastName.setText(driver.getL_name());
         holder.tvDriverCar.setText(driver.getCar());
         holder.tvDriverRatingValue.setText(String.valueOf(driver.getRating()));
+
+        holder.btnChat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                v.getContext().startActivity(new Intent(v.getContext(), ChatActivity.class).putExtra("driver_login", driver.getLogin()));
+            }
+        });
     }
 
     @Override

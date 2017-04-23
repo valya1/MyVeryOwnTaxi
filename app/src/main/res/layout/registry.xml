@@ -1,74 +1,115 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
 
     <android.support.design.widget.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/firstNameLayout"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:paddingTop="20dp"
+        android:paddingLeft="40dp">
 
         <android.support.design.widget.TextInputEditText
             android:id="@+id/tvLFirstName"
-            android:layout_width="match_parent"
+            android:layout_width="112dp"
             android:layout_height="match_parent"
             android:inputType="textPersonName"
+            android:gravity="center"
+            android:maxLines="1"
             android:hint="Имя" />
 
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_toRightOf="@id/firstNameLayout"
+        android:layout_width="112dp"
+        android:layout_height="wrap_content"
+        android:paddingLeft="40dp"
+        android:layout_alignParentRight="true"
+        android:paddingTop="20dp"
+        android:layout_alignParentEnd="true"
+        android:id="@+id/lastNameLayout">
 
         <android.support.design.widget.TextInputEditText
             android:id="@+id/tvLastName"
-            android:layout_width="match_parent"
+            android:layout_width="113dp"
             android:layout_height="match_parent"
-            android:inputType="textPersonName"
-            android:hint="Фамилия " />
+            android:gravity="center"
+            android:hint="Фамилия "
+            android:maxLines="1"
+            android:inputType="textPersonName" />
 
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <android.support.design.widget.TextInputEditText
-            android:id="@+id/tvFaculty"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:hint="Факультет" />
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lastNameLayout"
+        android:paddingTop="10dp"
+        android:id="@+id/loginLayout"
+        >
+    <android.support.design.widget.TextInputEditText
+        android:id="@+id/tvLogin"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:maxLines="1"
+        android:hint="Логин" />
 
     </android.support.design.widget.TextInputLayout>
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvCheckLogin"
+        android:layout_below="@+id/loginLayout"
+        android:gravity="center"
+        android:textColor="#FFC60805"
+        android:visibility="invisible"
+        />
+
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvCheckLogin"
+        android:id="@+id/passwordLayout">
 
-        <android.support.design.widget.TextInputEditText
-            android:id="@+id/tvLogin"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:hint="Логин" />
-
+    <android.support.design.widget.TextInputEditText
+        android:id="@+id/tvPassword"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:inputType="textPassword"
+        android:maxLines="1"
+        android:hint="Пароль" />
     </android.support.design.widget.TextInputLayout>
 
-    <android.support.design.widget.TextInputLayout
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:paddingTop="10sp"
+        android:layout_below="@+id/passwordLayout"
+        android:id="@+id/spinnerLayout">
 
-        <android.support.design.widget.TextInputEditText
-            android:id="@+id/tvPassword"
+        <Spinner
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:hint="Пароль" />
+            android:id="@+id/typesSpinner"
+            android:tag=""/>
 
-    </android.support.design.widget.TextInputLayout>
+    </LinearLayout>
+
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/spinnerLayout"
+        android:id="@+id/avatarLayout">
 
         <android.support.design.widget.TextInputEditText
             android:id="@+id/tvAvatar"
@@ -82,16 +123,20 @@
         android:id="@+id/btRegistry"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
         android:text="Зарегистрироваться"
-        android:visibility="visible" />
+        android:layout_below="@+id/avatarLayout"
+        android:background="@drawable/button"
+        android:visibility="visible"
+        />
 
-    <ProgressBar
-        android:id="@+id/progressBar"
-        style="@style/Widget.AppCompat.ProgressBar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:indeterminate="true"
-        android:indeterminateTint="@android:color/holo_blue_dark"
-        android:progress="@android:integer/config_shortAnimTime"
-        android:visibility="invisible" />
-</LinearLayout>
+    <!--<ProgressBar-->
+        <!--android:id="@+id/progressBar"-->
+        <!--style="@style/Widget.AppCompat.ProgressBar"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:indeterminate="true"-->
+        <!--android:indeterminateTint="@android:color/holo_blue_dark"-->
+        <!--android:progress="@android:integer/config_shortAnimTime"-->
+        <!--android:visibility="invisible" />-->
+</RelativeLayout>

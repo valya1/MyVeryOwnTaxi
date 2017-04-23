@@ -18,6 +18,10 @@ public class User {
         this.token = token;
     }
 
+    public User() {
+
+    }
+
     public String getId() {
         return id;
     }

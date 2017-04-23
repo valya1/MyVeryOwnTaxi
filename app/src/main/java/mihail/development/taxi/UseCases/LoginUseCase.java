@@ -1,5 +1,7 @@
 package mihail.development.taxi.UseCases;
 
+import android.content.SharedPreferences;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
@@ -19,7 +21,7 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 
-public class LoginUseCase extends UseCase<Boolean,LoginUseCase.Criteria> {
+public class LoginUseCase extends UseCase<User,LoginUseCase.Criteria> {
 
     public LoginUseCase() {
         super(Schedulers.io());
@@ -36,17 +38,16 @@ public class LoginUseCase extends UseCase<Boolean,LoginUseCase.Criteria> {
     }
 
     @Override
-    protected Observable<Boolean> createObservable(final Criteria criteria) {
-        return Observable.create(new ObservableOnSubscribe<Boolean>() {
+    protected Observable<User> createObservable(final Criteria criteria) {
+        return Observable.create(new ObservableOnSubscribe<User>() {
 
             @Override
-            public void subscribe(@NonNull ObservableEmitter<Boolean> e) throws Exception {
+            public void subscribe(@NonNull ObservableEmitter<User> e) throws Exception {
                 JsonObject JSonUser = getUser(criteria.login, criteria.password);
                 GsonBuilder builder = new GsonBuilder();
                 Gson gson = builder.create();
                 if(JSonUser.get("code").toString().equals("0")) {
-                    User user = gson.fromJson(JSonUser.get("response"), User.class);
-                    e.onNext(true);
+                    e.onNext(gson.fromJson(JSonUser.get("response"), User.class));
                     e.onComplete();
                 }
                 else

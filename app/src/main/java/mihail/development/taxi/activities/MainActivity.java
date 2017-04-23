@@ -1,14 +1,20 @@
-package mihail.development.taxi;
+package mihail.development.taxi.activities;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
+import mihail.development.taxi.R;
+import mihail.development.taxi.data.User;
 import mihail.development.taxi.presenters.MyLoginPresenter;
 import mihail.development.taxi.presenters.contracts.LoginContract;
 
@@ -20,27 +26,29 @@ public class MainActivity extends AppCompatActivity implements LoginContract.Vie
     static final String TAG = "Main_Activity";
     private LoginContract.LoginPresenter loginPresenter = new MyLoginPresenter(this);
     private ProgressDialog progressDialog;
-    private Button startRegistration;
+    private TextView startRegistration;
     private Button loginBtn;
     private EditText loginText;
     private EditText passwordText;
-
+    private TextView errotMessage;
+    public static final String APP_PREFERENCES = "mysettings";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         progressDialog = new ProgressDialog(MainActivity.this);
-        startRegistration = (Button) findViewById(R.id.btRegister);
+        startRegistration = (TextView) findViewById(R.id.text2);
         loginBtn = (Button) findViewById(R.id.btLogin);
         loginText = (EditText) findViewById(R.id.tvLogin);
         passwordText = (EditText) findViewById(R.id.tvPassword);
+        errotMessage = (TextView) findViewById(R.id.tvErrorMessage);
 
-              View.OnClickListener clickBtn = new View.OnClickListener() {
+              View.OnClickListener click = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 switch (view.getId()) {
-                    case R.id.btRegister:
+                    case R.id.text2:
                         startActivity(new Intent(MainActivity.this, RegisterActivity.class));
                         break;
                     case btLogin:
@@ -51,13 +59,23 @@ public class MainActivity extends AppCompatActivity implements LoginContract.Vie
                 }
             }
         };
-        startRegistration.setOnClickListener(clickBtn);
-        loginBtn.setOnClickListener(clickBtn);
+        startRegistration.setOnClickListener(click);
+        loginBtn.setOnClickListener(click);
     }
 
     @Override
-    public void toMapActivity() {
+    public void toMapActivity(User user) {
         Log.i(TAG, "SUcceeess");
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor prfEdit = preferences.edit();
+        prfEdit
+                .putString("user_login", user.getLogin())
+                .apply();
         startActivity(new Intent(this, MapActivity.class));
+    }
+
+    @Override
+    public void showErrorMessage() {
+        errotMessage.setText("Неправильный логин или пароль");
     }
 }

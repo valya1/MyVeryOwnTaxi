@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:id="@+id/ivAvatar"
+        android:layout_alignParentLeft="true"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvSenderName"
+        android:paddingLeft="5dp"
+        android:textSize="20dp"
+        android:text="Misha"
+        android:layout_toRightOf="@+id/ivAvatar"
+        android:gravity="left"
+        />
+
+
+    <TextView
+        android:id="@+id/tvMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxLines="6"
+        android:layout_below="@+id/ivAvatar"
+        android:paddingTop="10dp"
+        android:text="Im a Person."
+        />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvSendNotification"
+        android:textSize="10dp"
+        android:layout_below="@+id/tvMessage"
+        android:gravity="left"
+    />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/place_autocomplete_separator"
+        android:layout_below="@id/tvMessage"/>
+
+
+</RelativeLayout>

@@ -40,7 +40,7 @@ public class CheckLoginUseCase extends UseCase<Boolean, String> {
                     e.onNext(false);
                 }
             }
-        }).debounce(1000, TimeUnit.MILLISECONDS);
+        }).debounce(3, TimeUnit.SECONDS);
     }
 
 
@@ -63,8 +63,7 @@ public class CheckLoginUseCase extends UseCase<Boolean, String> {
         JsonParser parser = new JsonParser();
         JsonObject resp = parser.parse(response).getAsJsonObject();
 
-//        return resp.get("code").toString().equals("0");
-        return true;
+       return resp.get("code").toString().equals("0");
 
     }
 }

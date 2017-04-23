@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="io.adev.vmitaxi">
+    package="mihail.development.taxi">
+
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET"/>
 
     <uses-feature
@@ -20,8 +22,9 @@
             android:value="@integer/google_play_services_version" />
 
         <meta-data
-            android:name="com.google.android.maps.v2.API_KEY"
-            android:value="AIzaSyA26epHAFzJdnCnPhOvu2zQBqBS9ZESeyA" />
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyA26epHAFzJdnCnPhOvu2zQBqBS9ZESeyA"/>
+
 
         <uses-feature
             android:glEsVersion="0x00020000"
@@ -37,8 +40,8 @@
         <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
 
         <activity
-            android:windowSoftInputMode="adjustResize"
-            android:name="mihail.development.taxi.MainActivity">
+            android:windowSoftInputMode="adjustPan|adjustResize"
+            android:name="mihail.development.taxi.activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
@@ -46,20 +49,25 @@
         </activity>
 
         <activity
-            android:windowSoftInputMode="adjustResize"
-            android:name="mihail.development.taxi.MapActivity">
+            android:windowSoftInputMode="adjustPan|adjustResize"
+            android:name="mihail.development.taxi.activities.MapActivity">
         </activity>
 
 
         <activity
-            android:windowSoftInputMode="adjustResize"
-            android:name="mihail.development.taxi.RegisterActivity">
+            android:windowSoftInputMode="adjustPan|adjustResize"
+            android:name="mihail.development.taxi.activities.RegisterActivity">
         </activity>
 
         <activity
-            android:windowSoftInputMode="adjustResize"
-            android:name="mihail.development.taxi.DriversListActivity"
+            android:windowSoftInputMode="adjustPan|adjustResize"
+            android:name="mihail.development.taxi.activities.DriversListActivity"
+            />
+        <activity
+            android:windowSoftInputMode="adjustPan"
+            android:name="mihail.development.taxi.activities.ChatActivity"
             />
 
     </application>
+
 </manifest>

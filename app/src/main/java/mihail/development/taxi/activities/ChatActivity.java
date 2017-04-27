@@ -38,6 +38,7 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Function;
 import io.reactivex.observers.DisposableObserver;
 import io.reactivex.schedulers.Schedulers;
+import io.reactivex.subjects.PublishSubject;
 import mihail.development.taxi.R;
 import mihail.development.taxi.UseCases.RegistrationUseCase;
 import mihail.development.taxi.chatrecycler.ChatAdapter;
@@ -77,7 +78,6 @@ public class ChatActivity extends AppCompatActivity{
         final String login_driver = getIntent().getExtras().getString("driver_login");
         final String login_user = sharedPreferences.getString("user_login",null);
 
-
         final DisposableObserver<ArrayList<ChatItem>> observer = new DisposableObserver<ArrayList<ChatItem>>() {
             @Override
             public void onNext(@NonNull ArrayList<ChatItem> chatItems) {
@@ -95,21 +95,29 @@ public class ChatActivity extends AppCompatActivity{
             }
         };
 
-        final Observable<ArrayList<ChatItem>> chatObs = Observable.create(new ObservableOnSubscribe<ArrayList<ChatItem>>() {
+//        createObservable(login_user,login_driver).repeat().subscribe(observer);
+
+        createObservable(login_user,login_driver).repeatWhen(new Function<Observable<Object>, ObservableSource<?>>() {
             @Override
-            public void subscribe(@NonNull ObservableEmitter<ArrayList<ChatItem>> observableEmitter) throws Exception {
-                    if(!observer.isDisposed())
-                        observableEmitter.onNext(getDialog(login_user, login_driver));
-
+            public ObservableSource<?> apply(@NonNull Observable<Object> objectObservable) throws Exception {
+                return  objectObservable.flatMap(new Function<Object, ObservableSource<?>>() {
+                    @Override
+                    public ObservableSource<?> apply(@NonNull Object o) throws Exception {
+                        return Observable.timer(3,TimeUnit.SECONDS);
+                    }
+                });
             }
-        }).debounce(3,TimeUnit.SECONDS).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
+        }).subscribe(observer);
 
-        chatObs.subscribe(observer);
+
+
+//        createObservable(login_user,login_driver).subscribe(observer);
+
 
         sendMessageButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Observable.create(new ObservableOnSubscribe<ChatItem>() {
+                    @Override
+                    public void onClick(View v) {
+                        Observable.create(new ObservableOnSubscribe<ChatItem>() {
                     @Override
                     public void subscribe(@NonNull ObservableEmitter<ChatItem> observableEmitter) throws Exception {
                         observableEmitter.onNext(postMessage(message.getText().toString(), login_user, login_driver));
@@ -120,7 +128,8 @@ public class ChatActivity extends AppCompatActivity{
                         .subscribe(new DisposableObserver<ChatItem>() {
                     @Override
                     public void onNext(@NonNull ChatItem item) {
-                        Log.i(TAG, item.getLogin_driver());
+//                        createObservable(login_user,login_driver).subscribe(observer);
+                        chatAdapter.update(item);
                     }
 
                     @Override
@@ -133,9 +142,23 @@ public class ChatActivity extends AppCompatActivity{
 
                     }
                 });
+                        message.setText("");
             }
         });
     }
+
+
+    private Observable<ArrayList<ChatItem>> createObservable(final String login_user, final String login_driver)
+    {
+        return Observable.create(new ObservableOnSubscribe<ArrayList<ChatItem>>() {
+            @Override
+            public void subscribe(@NonNull ObservableEmitter<ArrayList<ChatItem>> observableEmitter) throws Exception {
+                observableEmitter.onNext(getDialog(login_user,login_driver));
+                observableEmitter.onComplete();
+            }
+        }).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
+    }
+
 
     private ChatItem postMessage(String message, String login_user, String login_driver)
     {
@@ -143,6 +166,7 @@ public class ChatActivity extends AppCompatActivity{
                 .add("login_user", login_user)
                 .add("login_driver", login_driver)
                 .add("message", message)
+                .add("from_driver", "false")
                 .build();
         Request request = new Request.Builder()
                 .url("http://89.223.29.6:8080/taxi/chats/post")

@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Vmi Taxi</string>
+    <string name="thankyou">Спасибо за заказ! Водитель с вами свяжется.\n\nВы можете снова перейти к карте.</string>
 </resources>

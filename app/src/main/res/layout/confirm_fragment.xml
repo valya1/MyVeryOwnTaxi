@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="556dp">
+
+        <!--<de.hdodenhof.circleimageview.CircleImageView-->
+        <!--android:id="@+id/ivConfirmDriver"-->
+        <!--android:layout_width="100dp"-->
+        <!--android:layout_height="100dp"-->
+        <!--android:layout_alignParentTop="true"-->
+        <!--android:layout_centerHorizontal="true"-->
+        <!--android:layout_marginTop="119dp"-->
+        <!--android:adjustViewBounds="false"-->
+        <!--android:background="@drawable/ivan_groznyy"-->
+        <!--android:cropToPadding="false"-->
+        <!--android:scaleType="center" />-->
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/ivConfirmDriver"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="30dp"
+            android:src="@drawable/no_avatar"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true" />
+
+        <TextView
+            android:id="@+id/tvTextFrom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ivConfirmDriver"
+            android:layout_marginTop="20dp"
+            android:layout_toLeftOf="@+id/tvToValue"
+            android:layout_toStartOf="@+id/tvToValue"
+            android:text="Откуда: "
+            android:textColor="@color/cardview_dark_background"
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/tvFromValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/tvTextFrom"
+            android:layout_alignBottom="@+id/tvTextFrom"
+            android:layout_marginLeft="11dp"
+            android:layout_marginStart="11dp"
+            android:layout_toEndOf="@+id/tvTextFrom"
+            android:layout_toRightOf="@+id/tvTextFrom"
+            android:textColor="@color/cardview_dark_background"
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/tvTextTo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvFromValue"
+            android:layout_marginTop="27dp"
+            android:layout_toLeftOf="@+id/tvDistanceValue"
+            android:layout_toStartOf="@+id/tvDistanceValue"
+            android:text="Куда: "
+            android:textColor="@color/cardview_dark_background"
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/tvToValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/tvTextTo"
+            android:layout_alignBottom="@+id/tvTextTo"
+            android:layout_below="@+id/tvFromValue"
+            android:layout_marginLeft="11dp"
+            android:layout_marginStart="11dp"
+            android:layout_toEndOf="@+id/tvTextTo"
+            android:layout_toRightOf="@+id/tvTextTo"
+            android:textColor="@color/cardview_dark_background"
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/tvTextDistance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvToValue"
+            android:layout_marginTop="27dp"
+            android:layout_toLeftOf="@+id/tvPriceValue"
+            android:layout_toStartOf="@+id/tvPriceValue"
+            android:text="Расстояние: "
+            android:textColor="@color/cardview_dark_background"
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/tvDistanceValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/tvTextDistance"
+            android:layout_alignBottom="@+id/tvTextDistance"
+            android:layout_marginLeft="11dp"
+            android:layout_marginStart="11dp"
+            android:layout_below="@+id/tvToValue"
+            android:layout_toEndOf="@+id/tvTextDistance"
+            android:layout_toRightOf="@+id/tvTextDistance"
+            android:textColor="@color/cardview_dark_background"
+            android:textSize="20dp" />
+
+
+        <TextView
+            android:id="@+id/tvTextPriceOfTrip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
+            android:text="Цена поездки:"
+            android:textColor="@color/cardview_dark_background"
+            android:textSize="20dp"
+            android:layout_below="@+id/tvTextDistance"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="27dp"
+            android:layout_marginStart="27dp" />
+
+
+        <TextView
+            android:id="@+id/tvPriceValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/tvTextPriceOfTrip"
+            android:layout_alignBottom="@+id/tvTextPriceOfTrip"
+            android:layout_marginLeft="11dp"
+            android:layout_marginStart="11dp"
+            android:layout_toEndOf="@+id/tvTextPriceOfTrip"
+            android:layout_toRightOf="@+id/tvTextPriceOfTrip"
+            android:textColor="@color/cardview_dark_background"
+            android:textSize="20dp" />
+
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/btnConfirm"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:background="@drawable/button"
+            android:text="Подтвердить заказ"
+            android:textColor="#fff"
+            android:layout_below="@+id/tvTextPriceOfTrip"
+            android:layout_alignLeft="@+id/btnDecline"
+            android:layout_alignStart="@+id/btnDecline" />
+
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/btnDecline"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="43dp"
+            android:background="@drawable/button"
+            android:gravity="center"
+            android:text="Назад"
+            android:textColor="#fff"
+            android:layout_below="@+id/btnConfirm"
+            android:layout_centerHorizontal="true" />
+
+
+    </RelativeLayout>
+
+
+</LinearLayout>

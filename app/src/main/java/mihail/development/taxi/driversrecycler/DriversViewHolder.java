@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import mihail.development.taxi.R;
 import mihail.development.taxi.activities.ChatActivity;
+import mihail.development.taxi.activities.MapActivity;
 
 
 class DriversViewHolder extends RecyclerView.ViewHolder {
@@ -40,6 +41,5 @@ class DriversViewHolder extends RecyclerView.ViewHolder {
         btnChat = (AppCompatButton) itemView.findViewById(R.id.btnChat);
 
     }
-
 }
 

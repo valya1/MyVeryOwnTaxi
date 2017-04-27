@@ -40,7 +40,7 @@ public class CheckLoginUseCase extends UseCase<Boolean, String> {
                     e.onNext(false);
                 }
             }
-        }).debounce(3, TimeUnit.SECONDS);
+        }).debounce(1, TimeUnit.SECONDS);
     }
 
 

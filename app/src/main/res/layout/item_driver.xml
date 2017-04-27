@@ -25,11 +25,12 @@
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentTop="true"
                 android:layout_marginRight="16dp"
-                android:src="@drawable/driver1" />
+                android:src="@drawable/ivan_groznyy" />
 
             <TextView
                 android:id="@+id/tvDriverFirstName"
                 android:layout_width="wrap_content"
+                android:text="Иван"
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@+id/person_photo"
                 android:textSize="15sp" />
@@ -37,6 +38,7 @@
             <TextView
                 android:id="@+id/tvDriverLastName"
                 android:layout_width="wrap_content"
+                android:text="Грозный"
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@+id/tvDriverFirstName"
                 android:paddingLeft="10sp"
@@ -45,26 +47,29 @@
             <TextView
                 android:id="@+id/tvDriverCar"
                 android:layout_width="wrap_content"
+                android:text="Карета Барская"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tvDriverLastName"
                 android:layout_toRightOf="@+id/person_photo"
-                android:paddingLeft="15dp"
+                android:paddingLeft="14dp"
                 android:paddingTop="5dp"
-                android:textSize="12sp" />
+                android:textSize="14sp" />
 
             <TextView
                 android:id="@+id/tvRating"
                 android:layout_width="wrap_content"
+                android:text="Рейтинг"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tvDriverCar"
                 android:layout_toRightOf="@id/person_photo"
-                android:paddingLeft="12sp" />
+                android:paddingLeft="11sp" />
 
             <TextView
                 android:id="@+id/tvDriverRatingValue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tvDriverCar"
+                android:text="10"
                 android:layout_toRightOf="@+id/tvRating"
                 android:paddingLeft="10sp" />
 

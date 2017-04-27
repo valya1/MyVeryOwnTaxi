@@ -67,7 +67,13 @@
             android:windowSoftInputMode="adjustPan"
             android:name="mihail.development.taxi.activities.ChatActivity"
             />
-
+        <activity
+            android:windowSoftInputMode="adjustPan"
+            android:name=".activities.ConfirmActivity"
+            />
+        <activity android:name=".activities.WaitingActivity"
+            android:windowSoftInputMode="adjustPan"
+            />
     </application>
 
 </manifest>

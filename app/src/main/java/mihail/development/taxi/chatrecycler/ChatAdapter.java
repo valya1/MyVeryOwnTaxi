@@ -1,6 +1,11 @@
 package mihail.development.taxi.chatrecycler;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.graphics.BitmapFactory;
+import android.preference.PreferenceManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,6 +13,8 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 
 import mihail.development.taxi.R;
+import mihail.development.taxi.activities.ChatActivity;
+import mihail.development.taxi.activities.MapActivity;
 import mihail.development.taxi.data.ChatItem;
 
 /**
@@ -52,11 +59,16 @@ public class ChatAdapter extends RecyclerView.Adapter<MessageViewHolder> {
         else
             holder.pesonName.setText(chatItem.getLogin_user());
         holder.message.setText(chatItem.getMessage());
-        holder.avatar.setImageResource(R.drawable.no_avatar);
+        if (chatItem.isFrom_driver()) {
+            holder.avatar.setImageResource(R.drawable.ivan_groznyy);
+        }
+        else
+            holder.avatar.setImageResource(R.drawable.no_avatar);
     }
 
     @Override
     public int getItemCount() {
         return chatItems.size();
     }
+
 }
